@@ -1,0 +1,39 @@
+
+-- DLL Scripts...................................
+
+create table appointment(
+appoint_id int NOT NULL AUTO_INCREMENT,
+appoint_pName  VARCHAR(30) NOT NULL,
+appoint_date  VARCHAR(10) NOT NULL,
+appoint_status  VARCHAR(1) NOT NULL,
+PRIMARY KEY (appoint_id)
+);
+
+
+create table cancellation_reasons(
+reason_id INTEGER PRIMARY KEY  NOT NULL,
+reason_value  VARCHAR(30) NOT NULL
+);
+
+
+create table appointment_cancellation(
+appoint_id INTEGER  NOT NULL,
+reason_id  INTEGER NOT NULL,
+FOREIGN KEY (appoint_id) REFERENCES appointment(appoint_id),
+FOREIGN KEY (reason_id)  REFERENCES cancellation_reasons(reason_id)
+);
+
+-- End DLL Scripts............................................
+
+
+
+-- DML Scripts................................................
+
+insert into cancellation_reasons values(1,'No show');
+insert into cancellation_reasons values(2,'based on patient request');
+insert into cancellation_reasons values(3,'Physician apology');
+
+
+-- End DML Scripts................................................
+
+
